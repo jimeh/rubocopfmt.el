@@ -16,7 +16,7 @@ gem install rubocopfmt --pre
 Drop `rubocopfmt.el` somewhere into you `load-path`. I favour the folder
 `~/.emacs.d/vendor`:
 
-```
+```lisp
 (add-to-list 'load-path "~/.emacs.d/vendor")
 (require 'rubocopfmt)
 ```
@@ -26,7 +26,7 @@ Drop `rubocopfmt.el` somewhere into you `load-path`. I favour the folder
 To enable formatting `ruby-mode` buffers with rubocopfmt on save, simply enable
 `rubocop-mode` within `ruby-mode` with something like this in your config:
 
-```
+```lisp
 (add-hook 'ruby-mode-hook #'rubocopfmt-mode)
 ```
 
