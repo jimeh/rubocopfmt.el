@@ -53,6 +53,7 @@
         (coding-system-for-write 'utf-8)
         (rubocopfmt-args
          (list "--diff-format" "rcs"
+               "--interactive"
                "--src-dir" (file-name-directory (file-truename buffer-file-name)))))
 
     (unwind-protect
