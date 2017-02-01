@@ -30,7 +30,10 @@ To enable formatting `ruby-mode` buffers with rubocopfmt on save, simply enable
 (add-hook 'ruby-mode-hook #'rubocopfmt-mode)
 ```
 
-You can also toggle `rubocopfmt-mode` on/off with `M-x rubocopfmt-mode`.
+## Commands
+
+- `rubocopfmt` - Format current buffer with rubocopfmt.
+- `rubocopfmt-mode` - Toggle formatting on save on/off.
 
 ## License
 
