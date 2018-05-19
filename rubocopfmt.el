@@ -1,4 +1,4 @@
-;;; rubocopfmt.el --- Format ruby code with rubocop
+;;; rubocopfmt.el --- Minor-mode to format Ruby code with RuboCop on save
 
 ;; Version: 0.2.1
 ;; Keywords: convenience wp edit ruby rubocop
