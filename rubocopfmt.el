@@ -1,4 +1,4 @@
-;;; rubocopfmt.el --- Format ruby code with rubocopfmt.
+;;; rubocopfmt.el --- Format ruby code with rubocop
 
 ;; Copyright (C) 2017 Jim Myhrberg
 
