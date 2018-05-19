@@ -15,12 +15,28 @@ favour the folder `~/.emacs.d/vendor`:
 
 ## Usage
 
-To enable formatting `ruby-mode` buffers on save with rubocopfmt, simply enable
-`rubocopfmt-mode` within `ruby-mode` with something like this in your config:
+To enable formatting `ruby-mode` buffers on save, simply enable
+`rubocopfmt-mode` with something like this in your config:
 
 ```lisp
 (add-hook 'ruby-mode-hook #'rubocopfmt-mode)
 ```
+
+## Internals
+
+`rubocopfmt-mode` works by executing `rubocop` against the file you are
+saving. To ensure RuboCop behaves as expected, it is executed from within the
+same directory as the file you are saving.
+
+## Bundler Integration
+
+If a `Gemfile` is found in the current directory or in any parent directory,
+`bundle exec rubocop [...]` will be used to execute RuboCop. This does mean that
+projects with a `Gemfile` are required to have `rubocop` listed as a dependency
+for rubocopfmt to work.
+
+This ensures that formatting is done with the same version of RuboCop that the
+project lists as a dependency.
 
 ## Commands
 
