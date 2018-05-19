@@ -1,20 +1,12 @@
 # rubocopfmt-mode
 
-Emacs minor-mode to format Ruby code with [rubocopfmt][] on save.
-
-Core parts of `rubocopfmt-mode` are borrowed from [`go-mode`][go-mode] and it's
-invocation of `gofmt`.
+Emacs minor-mode to format Ruby code with [RuboCop][] on save via it's
+`--auto-correct` option.
 
 ## Installing
 
-Install [rubocopfmt][]:
-
-```
-gem install rubocopfmt --pre
-```
-
-Drop `rubocopfmt.el` somewhere into you `load-path`. I favour the folder
-`~/.emacs.d/vendor`:
+Drop `rubocopfmt.el` somewhere into you `load-path` and require it. Personally I
+favour the folder `~/.emacs.d/vendor`:
 
 ```lisp
 (add-to-list 'load-path "~/.emacs.d/vendor")
@@ -23,8 +15,8 @@ Drop `rubocopfmt.el` somewhere into you `load-path`. I favour the folder
 
 ## Usage
 
-To enable formatting `ruby-mode` buffers with rubocopfmt on save, simply enable
-`rubocop-mode` within `ruby-mode` with something like this in your config:
+To enable formatting `ruby-mode` buffers on save with rubocopfmt, simply enable
+`rubocopfmt-mode` within `ruby-mode` with something like this in your config:
 
 ```lisp
 (add-hook 'ruby-mode-hook #'rubocopfmt-mode)
@@ -32,9 +24,8 @@ To enable formatting `ruby-mode` buffers with rubocopfmt on save, simply enable
 
 ## Commands
 
-- `rubocopfmt` - Format current buffer with rubocopfmt.
+- `rubocopfmt` - Format current buffer with RuboCop.
 - `rubocopfmt-mode` - Toggle formatting on save on/off.
 
-
-[rubocopfmt]: https://github.com/jimeh/rubocopfmt
+[rubocop]: https://github.com/bbatsov/rubocop
 [go-mode]: https://github.com/dominikh/go-mode.el
