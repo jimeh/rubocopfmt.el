@@ -1,6 +1,6 @@
 ;;; rubocopfmt.el --- Format ruby code with rubocop
 
-;; Version: 0.2.0
+;; Version: 0.2.1
 ;; Keywords: convenience wp edit ruby rubocop
 ;; Package-Requires: ((cl-lib "0.5"))
 ;; URL: https://github.com/jimeh/rubocopfmt.el
