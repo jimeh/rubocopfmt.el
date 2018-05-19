@@ -1,9 +1,10 @@
-# rubocopfmt-mode
+# rubocopfmt.el
 
-Emacs minor-mode to format Ruby code with [RuboCop][] on save via it's
-`--auto-correct` option.
+Emacs minor-mode to format Ruby code with
+[RuboCop](https://github.com/bbatsov/rubocop) on save via it's `--auto-correct`
+option.
 
-## Installing
+## Installation
 
 Drop `rubocopfmt.el` somewhere into you `load-path` and require it. Personally I
 favour the folder `~/.emacs.d/vendor`:
@@ -22,11 +23,16 @@ To enable formatting `ruby-mode` buffers on save, simply enable
 (add-hook 'ruby-mode-hook #'rubocopfmt-mode)
 ```
 
+## Commands
+
+- `rubocopfmt` - Format current buffer with RuboCop.
+- `rubocopfmt-mode` - Toggle formatting on save on/off.
+
 ## Internals
 
-`rubocopfmt-mode` works by executing `rubocop` against the file you are
-saving. To ensure RuboCop behaves as expected, it is executed from within the
-same directory as the file you are saving.
+`rubocopfmt` works by executing `rubocop` against the file you are saving. To
+ensure RuboCop behaves as expected, it is executed from within the same
+directory as the file you are saving.
 
 ## Bundler Integration
 
@@ -38,10 +44,22 @@ for rubocopfmt to work.
 This ensures that formatting is done with the same version of RuboCop that the
 project lists as a dependency.
 
-## Commands
+## Disabled Cops
 
-- `rubocopfmt` - Format current buffer with RuboCop.
-- `rubocopfmt-mode` - Toggle formatting on save on/off.
+There's a few of cops in RuboCop that can cause confusion and annoyance when run
+against work-in-progress code. Hence `rubocopfmt` disables the worst offenders
+by default. You can configure which cops are disabled by customizing the
+`rubocopfmt-disabled-cops` variable.
 
-[rubocop]: https://github.com/bbatsov/rubocop
-[go-mode]: https://github.com/dominikh/go-mode.el
+Cops disabled by default:
+
+- `Lint/Debugger`: Removes `debugger` statements. Not helpful when you need to
+  debug something.
+- `Lint/UnusedBlockArgument`: Don't prefix unused block variable names with
+  `_`. This cop causes issues if you save after defining a block, but before you
+  use all arguments of the block.
+- `Lint/UnusedMethodArgument`: Don't prefix unused method variable names with
+  `_`. This cop causes issues if you save after defining a method, but before
+  you use all arguments of the method.
+- `Style/EmptyMethod`: Don't remove remove empty line for empty methods. This
+  cop is annoying if you save right after defining a new method.
