@@ -4,7 +4,7 @@
 
 ;; Author: Jim Myhrberg
 ;; Keywords: convenience wp edit ruby rubocop
-;; URL: https://github.com/jimeh/rubocopfmt-emacs
+;; URL: https://github.com/jimeh/rubocopfmt.el
 ;; Version: 0.1.0
 
 ;; This file is not part of GNU Emacs.
