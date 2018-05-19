@@ -3,7 +3,7 @@
 ;; Copyright (C) 2017 Jim Myhrberg
 
 ;; Author: Jim Myhrberg
-;; Keywords: ruby rubocop rubocopfmt
+;; Keywords: convenience wp edit ruby rubocop
 ;; URL: https://github.com/jimeh/rubocopfmt-emacs
 ;; Version: 0.1.0
 
@@ -182,7 +182,7 @@ If FILE is not found in DIRECTORY, the parent of DIRECTORY will be searched."
         (goto-char (point-min))
         (while (not (eobp))
           (unless (looking-at "^\\([ad]\\)\\([0-9]+\\) \\([0-9]+\\)")
-            (error "invalid rcs patch or internal error in rubocopfmt--apply-rcs-patch"))
+            (error "Invalid rcs patch or internal error in rubocopfmt--apply-rcs-patch"))
           (forward-line)
           (let ((action (match-string 1))
                 (from (string-to-number (match-string 2)))
@@ -203,7 +203,7 @@ If FILE is not found in DIRECTORY, the parent of DIRECTORY will be searched."
                 (cl-incf line-offset len)
                 (rubocopfmt--delete-whole-line len)))
              (t
-              (error "invalid rcs patch or internal error in rubocopfmt--apply-rcs-patch")))))))))
+              (error "Invalid rcs patch or internal error in rubocopfmt--apply-rcs-patch")))))))))
 
 (defun rubocopfmt--delete-whole-line (&optional arg)
   "Delete the current line without putting it in the `kill-ring'.
@@ -232,6 +232,7 @@ function."
                         (progn (forward-visible-line arg) (point))))))
 
 (defun rubocopfmt--goto-line (line)
+  "Move cursor to LINE."
   (goto-char (point-min))
   (forward-line (1- line)))
 
