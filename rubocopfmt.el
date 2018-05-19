@@ -47,12 +47,12 @@
   :group 'rubocopfmt)
 
 (defcustom rubocopfmt-disabled-cops
-  '("Lint/Debugger"                      ; Don't remove debugger calls.
-    "Lint/UnusedBlockArgument"           ; Don't rename unused block arguments.
-    "Lint/UnusedMethodArgument"          ; Don't rename unused method arguments.
-    "Style/EmptyMethod"                  ; Don't remove blank line in empty methods.
+  '("Lint/Debugger"              ; Don't remove debugger calls.
+    "Lint/UnusedBlockArgument"   ; Don't rename unused block arguments.
+    "Lint/UnusedMethodArgument"  ; Don't rename unused method arguments.
+    "Style/EmptyMethod"          ; Don't remove blank line in empty methods.
     )
-  "A list of RuboCop Cops to disable during auto-correction.
+  "A list of RuboCop cops to disable during auto-correction.
 These cops are disabled because they cause confusion during
 interactive use within a text-editor."
   :type '(repeat string)
