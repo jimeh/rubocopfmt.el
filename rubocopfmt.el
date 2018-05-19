@@ -45,6 +45,8 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+
 (defgroup rubocopfmt nil
   "Minor mode for formatting Ruby buffers with rubocop."
   :group 'languages
