@@ -67,9 +67,18 @@ interactive use within a text-editor."
   :type '(repeat string)
   :group 'rubocopfmt)
 
-(defcustom rubocopfmt-show-errors t
-  "Display errors in echo area."
-  :type 'boolean
+(defcustom rubocopfmt-show-errors 'buffer
+  "Where to display rubocopfmt error output.
+It can either be displayed in its own buffer, in the echo area,
+or not at all.
+
+Please note that Emacs outputs to the echo area when writing
+files and will overwrite rubocopfmt's echo output if used from
+inside a `before-save-hook'."
+  :type '(choice
+          (const :tag "Own buffer" buffer)
+          (const :tag "Echo area" echo)
+          (const :tag "None" nil))
   :group 'rubocopfmt)
 
 ;;;###autoload
@@ -144,14 +153,22 @@ interactive use within a text-editor."
             (when (search-forward "[Corrected]" split t)
               (write-region split (point-max) tmpfile)
               t))
-        (rubocopfmt--display-error resultbuf)
+        (rubocopfmt--process-errors resultbuf)
         nil))))
 
-(defun rubocopfmt--display-error (resultbuf)
-  "Display contents of RESULTBUF if rubocop-show-errors is t."
-  (if rubocopfmt-show-errors
+(defun rubocopfmt--process-errors (resultbuf)
+  "Display contents of RESULTBUF as errors."
+  (if (eq rubocopfmt-show-errors 'echo)
       (with-current-buffer resultbuf
-        (message (buffer-string)))))
+        (message (buffer-string))))
+
+  (if (eq rubocopfmt-show-errors 'buffer)
+      (let ((errbuf (get-buffer-create "*Rubocopfmt errors*")))
+        (with-current-buffer errbuf
+          (erase-buffer)
+          (goto-char (point-min))
+          (insert-buffer-substring resultbuf))
+          (display-buffer errbuf))))
 
 (defun rubocopfmt--bundled-path-p (directory)
   "Check if there is a Gemfile in DIRECTORY, or any parent directory."
