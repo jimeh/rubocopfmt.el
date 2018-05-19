@@ -55,11 +55,11 @@ Cops disabled by default:
 
 - `Lint/Debugger`: Removes `debugger` statements. Not helpful when you need to
   debug something.
-- `Lint/UnusedBlockArgument`: Don't prefix unused block variable names with
-  `_`. This cop causes issues if you save after defining a block, but before you
-  use all arguments of the block.
-- `Lint/UnusedMethodArgument`: Don't prefix unused method variable names with
-  `_`. This cop causes issues if you save after defining a method, but before
-  you use all arguments of the method.
+- `Lint/UnusedBlockArgument`: Don't prefix unused block argument variable names
+  with `_`. This cop causes issues if you save after defining a block, but
+  before you use all arguments of the block.
+- `Lint/UnusedMethodArgument`: Don't prefix unused method argument variable
+  names with `_`. This cop causes issues if you save after defining a method,
+  but before you use all arguments of the method.
 - `Style/EmptyMethod`: Don't remove remove empty line for empty methods. This
   cop is annoying if you save right after defining a new method.
