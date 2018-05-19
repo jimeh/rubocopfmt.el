@@ -1,6 +1,6 @@
 ;;; rubocopfmt.el --- Minor-mode to format Ruby code with RuboCop on save
 
-;; Version: 0.2.1
+;; Version: 0.2.2
 ;; Keywords: convenience wp edit ruby rubocop
 ;; Package-Requires: ((cl-lib "0.5"))
 ;; URL: https://github.com/jimeh/rubocopfmt.el
