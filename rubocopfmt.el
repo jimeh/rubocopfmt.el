@@ -84,6 +84,11 @@ inside a `before-save-hook'."
           (const :tag "None" nil))
   :group 'rubocopfmt)
 
+(defcustom rubocopfmt-major-modes '(ruby-mode enh-ruby-mode)
+  "List of major modes to format on save when rubocopfmt-mode is enabled."
+  :type '(repeat symbol)
+  :group 'rubocopfmt)
+
 
 (defun rubocopfmt--apply-rcs-patch (patch-buffer)
   "Apply an RCS-formatted diff from PATCH-BUFFER to the current buffer."
@@ -278,7 +283,7 @@ If FILE is not found in DIRECTORY, the parent of DIRECTORY will be searched."
 (defun rubocopfmt-before-save ()
   "Format buffer via rubocopfmt if major mode is `ruby-mode'."
   (interactive)
-  (when (eq major-mode 'ruby-mode) (rubocopfmt)))
+  (when (member major-mode rubocopfmt-major-modes) (rubocopfmt)))
 
 (provide 'rubocopfmt)
 ;;; rubocopfmt.el ends here
