@@ -44,6 +44,10 @@ for rubocopfmt to work.
 This ensures that formatting is done with the same version of RuboCop that the
 project lists as a dependency.
 
+If you don't care about having a specific version of RuboCop and/or are using it as an
+external tool, but still use a `Gemfile`, you can opt out from this behaviour by configuring
+the option `(setq rubocopfmt-use-bundler-when-possible nil)`.
+
 ## Disabled Cops
 
 There's a few of cops in RuboCop that can cause confusion and annoyance when run
