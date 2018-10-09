@@ -58,6 +58,11 @@
   :type 'string
   :group 'rubocopfmt)
 
+(defcustom rubocopfmt-use-bundler-when-possible t
+  "When t and Gemfile is present, run rubocop with 'bundle exec'."
+  :type 'boolean
+  :group 'rubocopfmt)
+
 (defcustom rubocopfmt-disabled-cops
   '("Lint/Debugger"              ; Don't remove debugger calls.
     "Lint/UnusedBlockArgument"   ; Don't rename unused block arguments.
@@ -237,7 +242,8 @@ If FILE is not found in DIRECTORY, the parent of DIRECTORY will be searched."
                          "--auto-correct"
                          "--format" "emacs")))
 
-    (if (rubocopfmt--bundled-path-p src-dir)
+    (if (and rubocopfmt-use-bundler-when-possible
+             (rubocopfmt--bundled-path-p src-dir))
         (setq fmt-command "bundle"
               fmt-args (append (list "exec" rubocopfmt-rubocop-command)
                                fmt-args)))
