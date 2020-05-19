@@ -6,33 +6,55 @@ option.
 
 ## Installation
 
-Drop `rubocopfmt.el` somewhere into you `load-path` and require it. Personally I
-favour the folder `~/.emacs.d/vendor`:
+Available on MELPA as [`rubocopfmt`](https://melpa.org/#/rubocopfmt).
 
-```lisp
+### use-package
+
+```elisp
+(use-package rubocopfmt
+  :hook
+  (ruby-mode . rubocopfmt-mode))
+```
+
+### package.el
+
+```
+M-x package-install rubocopfmt
+```
+
+Then add the following to your Emacs config:
+
+```elisp
+(require 'rubocopfmt)
+(add-hook 'ruby-mode-hook #'rubocopfmt-mode)
+```
+
+### Manual
+
+Place `rubocopfmt.el` somewhere into you `load-path` and require it. For example
+`~/.emacs.d/vendor`:
+
+```elisp
 (add-to-list 'load-path "~/.emacs.d/vendor")
 (require 'rubocopfmt)
+(add-hook 'ruby-mode-hook #'rubocopfmt-mode)
 ```
 
 ## Usage
 
-To enable formatting `ruby-mode` buffers on save, simply enable
-`rubocopfmt-mode` with something like this in your config:
-
-```lisp
-(add-hook 'ruby-mode-hook #'rubocopfmt-mode)
-```
+With `rubocopfmt-mode` enabled, Ruby buffer will automatically be formatted with
+RuboCop on save.
 
 ## Commands
 
 - `rubocopfmt` - Format current buffer with RuboCop.
-- `rubocopfmt-mode` - Toggle formatting on save on/off.
+- `rubocopfmt-mode` - Toggle automatic formatting on save on/off.
 
 ## Internals
 
 `rubocopfmt` works by executing `rubocop` against the file you are saving. To
 ensure RuboCop behaves as expected, it is executed from within the same
-directory as the file you are saving.
+directory as the file you are working on.
 
 ## Bundler Integration
 
@@ -44,9 +66,9 @@ for rubocopfmt to work.
 This ensures that formatting is done with the same version of RuboCop that the
 project lists as a dependency.
 
-If you don't care about having a specific version of RuboCop and/or are using it as an
-external tool, but still use a `Gemfile`, you can opt out from this behaviour by configuring
-the option `(setq rubocopfmt-use-bundler-when-possible nil)`.
+If you don't care about having a specific version of RuboCop and/or are using it
+as an external tool, but still use a `Gemfile`, you can opt out from this
+behaviour by setting `rubocopfmt-use-bundler-when-possible` to `nil`.
 
 ## Disabled Cops
 
@@ -67,3 +89,28 @@ Cops disabled by default:
   but before you use all arguments of the method.
 - `Style/EmptyMethod`: Don't remove remove empty line for empty methods. This
   cop is annoying if you save right after defining a new method.
+
+## Performance
+
+RuboCop is not very fast, often taking as much as 1-3 seconds to run. This can
+be annoying, but there's a couple of options to improve performance. Both seem
+to get the formatting time down to around 100-200ms just.
+
+### rubocop-daemon
+
+With [rubocop-daemon](https://github.com/fohte/rubocop-daemon) you end up with a
+rubocop server running in the background. If you try this out, I highly
+recommend using the bash script wrapper they provide, as that yields the best
+possible performance.
+
+### lsp-mode / solargraph
+
+If you use [lsp-mode](https://github.com/emacs-lsp/lsp-mode) and
+[solargraph](https://github.com/castwide/solargraph), with it configured to use
+RuboCop as a reporter, then `lsp-format-buffer` should be able to format Ruby
+buffers extremely fast.
+
+`rubocopfmt-mode` can use `lsp-format-buffer` instead of `rubocopfmt` to format
+buffers on save. This is currently an experimental feature, but you can turn it
+on by customizing `rubocopfmt-on-save-use-lsp-format-buffer` and setting it to
+`t`.
