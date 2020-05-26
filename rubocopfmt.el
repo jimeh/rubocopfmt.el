@@ -113,7 +113,8 @@ to format buffer before saving, instead of `rubocopfmt'."
         ;; Appending lines decrements the offset (possibly making it
         ;; negative), deleting lines increments it. This order
         ;; simplifies the forward-line invocations.
-        (line-offset 0))
+        (line-offset 0)
+        (column (current-column)))
     (save-excursion
       (with-current-buffer patch-buffer
         (goto-char (point-min))
@@ -140,7 +141,8 @@ to format buffer before saving, instead of `rubocopfmt'."
                 (cl-incf line-offset len)
                 (rubocopfmt--delete-whole-line len)))
              (t
-              (error "Invalid rcs patch or internal error in rubocopfmt--apply-rcs-patch")))))))))
+              (error "Invalid rcs patch or internal error in rubocopfmt--apply-rcs-patch")))))))
+    (move-to-column column)))
 
 (defun rubocopfmt--delete-whole-line (&optional arg)
   "Delete the current line without putting it in the `kill-ring'.
