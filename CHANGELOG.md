@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](///compare/0.4.0...0.4.1) (2020-05-26)
+
+
+### Bug Fixes
+
+* Always move back to same column after applying rcs patch 9b7c86a
+
 ## [0.4.0](https://github.com/jimeh/rubocopfmt.el/compare/0.3.0...0.4.0) (2020-05-19)
 
 
