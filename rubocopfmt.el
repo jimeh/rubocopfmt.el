@@ -69,7 +69,7 @@
     "Lint/UnusedMethodArgument"  ; Don't rename unused method arguments.
     "Style/EmptyMethod"          ; Don't remove blank line in empty methods.
     )
-  "A list of RuboCop cops to disable during auto-correction.
+  "List of RuboCop cops to disable during auto-correction.
 These cops are disabled because they cause confusion during
 interactive use within a text-editor."
   :type '(repeat string)
@@ -87,6 +87,12 @@ inside a `before-save-hook'."
           (const :tag "Own buffer" buffer)
           (const :tag "Echo area" echo)
           (const :tag "None" nil))
+  :group 'rubocopfmt)
+
+(defcustom rubocopfmt-include-unsafe-cops nil
+  "When t include unsafe cops when auto-correcting.
+Determines if --auto-correct or --auto-correct-all will be passed to rubocop."
+  :type 'boolean
   :group 'rubocopfmt)
 
 (defcustom rubocopfmt-major-modes '(ruby-mode enh-ruby-mode)
@@ -245,8 +251,10 @@ If FILE is not found in DIRECTORY, the parent of DIRECTORY will be searched."
          (src-dir (file-name-directory buffer-file))
          (src-file (file-name-nondirectory buffer-file))
          (fmt-command rubocopfmt-rubocop-command)
+         (auto-correct-flag (if rubocopfmt-include-unsafe-cops
+                                "--auto-correct-all" "--auto-correct"))
          (fmt-args (list "--stdin" src-file
-                         "--auto-correct"
+                         auto-correct-flag
                          "--format" "emacs")))
 
     (if (and rubocopfmt-use-bundler-when-possible

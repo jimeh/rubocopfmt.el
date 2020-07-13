@@ -45,6 +45,19 @@ Place `rubocopfmt.el` somewhere into you `load-path` and require it. For example
 With `rubocopfmt-mode` enabled, Ruby buffer will automatically be formatted with
 RuboCop on save.
 
+### Unsafe Cops
+
+RuboCop no longer runs auto-corrections for unsafe cops. To enable unsafe cops,
+set `rubocopfmt-include-unsafe-cops` to `t`. If you're using use-package:
+
+```elisp
+(use-package rubocopfmt
+  :hook
+  (ruby-mode . rubocopfmt-mode)
+  :custom
+  (rubocopfmt-include-unsafe-cops t))
+```
+
 ## Commands
 
 - `rubocopfmt` - Format current buffer with RuboCop.
