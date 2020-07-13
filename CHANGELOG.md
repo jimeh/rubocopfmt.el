@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/jimeh/rubocopfmt.el/compare/0.4.1...0.5.0) (2020-07-13)
+
+
+### Features
+
+* **cops:** Add support for running unsafe cops with latest RuboCop ([b4be084](https://github.com/jimeh/rubocopfmt.el/commit/b4be08469c9d8d95b2847c625241d9be8fa34ed0))
+
 ### [0.4.1](///compare/0.4.0...0.4.1) (2020-05-26)
 
 
