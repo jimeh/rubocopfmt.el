@@ -41,7 +41,7 @@
 
 ;;; Commentary:
 ;;
-;; This library formats Ruby code by using rubocop and it's --auto-correct
+;; This library formats Ruby code by using rubocop and it's --autocorrect
 ;; option.
 
 ;;; Code:
@@ -91,7 +91,7 @@ inside a `before-save-hook'."
 
 (defcustom rubocopfmt-include-unsafe-cops nil
   "When t include unsafe cops when auto-correcting.
-Determines if --auto-correct or --auto-correct-all will be passed to rubocop."
+Determines if --autocorrect or --autocorrect-all will be passed to rubocop."
   :type 'boolean
   :group 'rubocopfmt)
 
@@ -251,8 +251,7 @@ If FILE is not found in DIRECTORY, the parent of DIRECTORY will be searched."
          (src-dir (file-name-directory buffer-file))
          (src-file (file-name-nondirectory buffer-file))
          (fmt-command rubocopfmt-rubocop-command)
-         (auto-correct-flag (if rubocopfmt-include-unsafe-cops
-                                "--auto-correct-all" "--auto-correct"))
+         (auto-correct-flag (if rubocopfmt-include-unsafe-cops "-A" "-a"))
          (fmt-args (list "--stdin" src-file
                          auto-correct-flag
                          "--format" "emacs")))
