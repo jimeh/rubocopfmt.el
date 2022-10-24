@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.5.1](https://github.com/jimeh/rubocopfmt.el/compare/0.5.0...0.5.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* use -a and -A flags to avoid deprecation warnings ([9b00231](https://github.com/jimeh/rubocopfmt.el/commit/9b0023158cf2517fc07938f678fac8b67f1c6da3)), closes [#8](https://github.com/jimeh/rubocopfmt.el/issues/8)
+
 ## [0.5.0](https://github.com/jimeh/rubocopfmt.el/compare/0.4.1...0.5.0) (2020-07-13)
 
 
