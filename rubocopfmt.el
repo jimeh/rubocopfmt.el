@@ -95,7 +95,7 @@ Determines if --autocorrect or --autocorrect-all will be passed to rubocop."
   :type 'boolean
   :group 'rubocopfmt)
 
-(defcustom rubocopfmt-major-modes '(ruby-mode enh-ruby-mode)
+(defcustom rubocopfmt-major-modes '(ruby-mode ruby-ts-mode enh-ruby-mode)
   "List of major modes to format on save when rubocopfmt-mode is enabled."
   :type '(repeat symbol)
   :group 'rubocopfmt)
